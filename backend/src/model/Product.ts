@@ -1,19 +1,21 @@
 import { Model, Schema, model } from 'mongoose';
 import { ICategory } from './Category';
 export interface IProduct {
-    name: string;
-    url: string;
-    price: number;
-    brand: string;
-    availability: string;
-    delivery: string;
-    specifications: [
+    name?: string;
+    img?: string;
+    url?: string;
+    price?: number;
+    brand?: string;
+    availability?: string;
+    delivery?: string;
+    feature?: string;
+    specifications?: [
         {
             key: string;
             value: string;
         }
     ];
-    category: ICategory;
+    category?: ICategory;
 }
 
 const ProductShema: Schema = new Schema<IProduct>(
@@ -25,6 +27,9 @@ const ProductShema: Schema = new Schema<IProduct>(
         url: {
             type: 'string',
             unique: true
+        },
+        img: {
+            type: 'string'
         },
         price: {
             type: 'number'
@@ -48,6 +53,9 @@ const ProductShema: Schema = new Schema<IProduct>(
                 }
             }
         ],
+        feature: {
+            type: 'string'
+        },
         category: {
             type: Schema.Types.ObjectId,
             ref: 'Category'

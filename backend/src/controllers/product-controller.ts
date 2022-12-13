@@ -5,7 +5,6 @@ class ProductController {
     async retreiveAll(req: Request, res: Response, next: NextFunction) {
         try {
             const products = await productService.fetchAll();
-            console.log(products);
             return res.status(200).send(products);
         } catch (error) {
             console.log(error);
@@ -15,8 +14,17 @@ class ProductController {
     async retreiveByCategory(req: Request, res: Response, next: NextFunction) {
         try {
             const { categoryId } = req.params;
-            const products = productService.fetchByCategory(categoryId);
+            const products = await productService.fetchByCategory(categoryId);
+            console.log(products);
             res.status(200).send(products);
+        } catch (error) {
+            next(error);
+        }
+    }
+    async retreiveCategories(req: Request, res: Response, next: NextFunction) {
+        try {
+            const categories = await productService.fetchAllCategories();
+            res.status(200).send(categories);
         } catch (error) {
             next(error);
         }

@@ -5,5 +5,6 @@ const router = Router();
 
 router.get('/products', productController.retreiveAll);
 router.get('/products/:categoryId', productController.retreiveByCategory);
+router.get('/categories', productController.retreiveCategories);
 
 export default router;

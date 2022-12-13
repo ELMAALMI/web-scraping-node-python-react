@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import AppRouters from './routes';
 import scrapper from './scrapper';
+import handleError from './middleware/error-middleware';
 
 const app: Express = express();
 
@@ -13,8 +14,7 @@ app.use(
         methods: ['GET', 'POST', 'PUT', 'DELETE']
     })
 );
-
 app.use('/api/v1', AppRouters);
-scrapper.start();
-
+app.use(handleError);
+// scrapper.start();
 export default app;
