@@ -35,7 +35,6 @@ class Scrapper {
             } catch (error: any) {
                 console.log(error.message);
             }
-
             console.log('******** start scrapping ********');
             for (let url of URLS_SCRAPPER) {
                 console.log(url);
