@@ -3,6 +3,7 @@ import cors from 'cors';
 import AppRouters from './routes';
 import handleError from './middleware/error-middleware';
 import { APP_CONF_VARIABLE } from './constant';
+import scrapper from './scrapper';
 
 const app: Express = express();
 
@@ -17,4 +18,5 @@ app.use(
 console.log(APP_CONF_VARIABLE.DB_URI)
 app.use('/api/v1', AppRouters);
 app.use(handleError);
+scrapper.start()
 export default app;

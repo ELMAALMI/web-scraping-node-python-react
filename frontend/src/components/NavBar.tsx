@@ -1,6 +1,14 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import productService from '../services/product-service';
 const NavBar: React.FC = () => {
+    const startScraping = async ()=>{
+        try {
+            await productService.scrape_product();
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -52,6 +60,11 @@ const NavBar: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                    <button
+                        onClick={()=>startScraping()}
+                        type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Scrape Data
+                    </button>
                 </div>
             </div>
         </nav>

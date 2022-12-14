@@ -11,6 +11,16 @@ class ProductService {
             console.log(error);
         }
     }
+    async scrape_product() {
+        try {
+            const res = await axios.post('/start-scrapping');
+            if (res.status === 200) {
+                return res.data;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async fetch_categories() {
         try {
             const res = await axios.get('/categories');
